@@ -1,5 +1,8 @@
 package com.aeappss.hashtags;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -56,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         //searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
         searchView.setEllipsize(true);
 
-        String [] result = {"labas","ate","miau"};
+        String [] result = {"labas","ate","miau", "muhtaras", "murka", "minedas"};
         searchView.setAdapter(new SearchAdapter(this, result));
 
         searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
@@ -106,10 +109,26 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
+            return true;
+        }*/
+        if (id == R.id.instagram) {
+            Toast.makeText(getApplicationContext(), "AS CIA INSTAGRAM", Toast.LENGTH_SHORT).show();
+
+            Uri uri = Uri.parse("http://instagram.com/_u/");
+            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+            likeIng.setPackage("com.instagram.android");
+
+            try {
+                startActivity(likeIng);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://instagram.com/xxx")));
+            }
+
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

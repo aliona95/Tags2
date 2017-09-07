@@ -10,14 +10,16 @@ import android.view.ViewGroup;
 
 import com.aeappss.hashtags.R;
 import com.aeappss.hashtags.adapter.GridAdapter;
+import com.aeappss.hashtags.adapter.GridAdapterPopular;
 
-public class ExploreFragment extends Fragment{
+
+public class PopularFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
 
-    public ExploreFragment() {
+    public PopularFragment() {
         // Required empty public constructor
     }
 
@@ -25,17 +27,19 @@ public class ExploreFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_explore, container, false);
+        //return inflater.inflate(R.layout.fragment_popular, container, false);
+
+
+        View view = inflater.inflate(R.layout.fragment_popular, container, false);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mLayoutManager = new GridLayoutManager(getActivity(), 1);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new GridAdapter();
+        mAdapter = new GridAdapterPopular();
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
     }
-
 }
